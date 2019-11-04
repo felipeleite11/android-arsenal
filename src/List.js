@@ -7,7 +7,8 @@ export default function ListScreen({ navigation }) {
         { name: 'Toast' },
         { name: 'Snackbar' },
         { name: 'DatetimePicker' },
-        { name: 'Notification' }
+        { name: 'Notification' },
+        { name: 'Vibration' }
     ]
 
     return (
@@ -28,12 +29,17 @@ export default function ListScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'center'
     },
     button: {
         paddingVertical: 10,
         paddingHorizontal: 15,
-        alignItems: 'center'
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'grey',
+        borderStyle: 'solid'
     },
     text: {
         color: '#2C2C2C',

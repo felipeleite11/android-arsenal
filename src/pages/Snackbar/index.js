@@ -38,7 +38,7 @@ https://github.com/cooperka/react-native-snackbar/wiki/Manual-Installation`,
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.buttonsContainer}>
                 <Text style={styles.title}>SNACKBAR</Text>
 
@@ -58,6 +58,11 @@ https://github.com/cooperka/react-native-snackbar/wiki/Manual-Installation`,
 }
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        paddingVertical: 20,
+        paddingHorizontal: 10
+    },
     title: {
         fontSize: 20,
       fontWeight: 'bold',
@@ -77,7 +82,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     codeInstall: {
-        color: '#F00'
+        color: '#F00',
+        marginBottom: 15
     },
     codeImport: {
         fontSize: 12,

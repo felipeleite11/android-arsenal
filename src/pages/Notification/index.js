@@ -6,55 +6,90 @@
 
 //https://www.npmjs.com/package/react-native-push-notification
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PushNotification from 'react-native-push-notification'
 import {
     StyleSheet,
     Text,
-    TouchableOpacity
-  } from 'react-native';
+    TouchableOpacity,
+    View
+  } from 'react-native'
 
 export default function NotificationScreen() {
+    const [dependencies, setDependencies] = useState('')
+    const [code, setCode] = useState('')
+    const data = {
+        default: {
+            dependencies: `import PushNotification from 'react-native-push-notification'`,
+            code: `PushNotification.localNotification({
+    title: 'Notificação',
+    message: 'Mensagem da notificação...',
+    playSound: true,
+    vibrate: true,
+    vibration: 300
+})`,
+            run: () =>  PushNotification.localNotification({
+                            title: 'Notificação',
+                            message: 'Mensagem da notificação...',
+                            playSound: true,
+                            vibrate: true,
+                            vibration: 300
+                        })
+        },
+
+        schedule: {
+            dependencies: `import PushNotification from 'react-native-push-notification'`,
+            code: `PushNotification.localNotificationSchedule({
+    title: 'Notificação programada',
+    message: "Mensagem da notificação...",
+    date: new Date(Date.now() + (3 * 1000)) //após 3 segundos
+})`,
+            run: () =>  PushNotification.localNotificationSchedule({
+                            title: 'Notificação programada',
+                            message: "Mensagem da notificação...",
+                            date: new Date(Date.now() + (3 * 1000)) //após 3 segundos
+                        })
+        }
+    }
+
     useEffect(() => {
         PushNotification.configure({})
-    
         PushNotification.cancelAllLocalNotifications()
     }, [])
 
-    function handleNormalNotification() {
-        PushNotification.localNotification({
-            title: 'Notificação',
-            message: 'Mensagem da notificação...',
-            playSound: true,
-            vibrate: true,
-            vibration: 300
-        })
-    }
+    function handlePress(mode) {
+        setDependencies(data[mode].dependencies)
+        setCode(data[mode].code)
 
-    function handleScheduleNotification() {
-        PushNotification.localNotificationSchedule({
-            title: 'Notificação programada',
-            message: "Mensagem da notificação...", 
-            date: new Date(Date.now() + (3 * 1000)) //após 3 segundos
-        })
+        data[mode].run()
     }
 
     return (
-        <>
+        <View style={styles.container}>
             <Text style={styles.title}>NOTIFICAÇÕES</Text>
 
-            <TouchableOpacity onPress={handleNormalNotification} style={styles.button}>
+            <TouchableOpacity onPress={() => handlePress('default')} style={styles.button}>
                 <Text style={styles.text}>NORMAL</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={handleScheduleNotification} style={styles.button}>
+            <TouchableOpacity onPress={() => handlePress('schedule')} style={styles.button}>
                 <Text style={styles.text}>PROGRAMADA (3s)</Text>
             </TouchableOpacity>
-        </>
+
+            <View style={{...styles.codeContainer, display: code ? 'flex' : 'none'}}>
+                <Text style={styles.codeImport}>{dependencies}</Text>
+                <Text style={styles.code}>{code}</Text>
+            </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        paddingVertical: 20,
+        paddingHorizontal: 10
+    },
     title: {
       fontSize: 18,
       marginVertical: 15
@@ -68,5 +103,20 @@ const styles = StyleSheet.create({
     },
     text: {
         color: '#FFF'
+    },
+    codeContainer: {
+        backgroundColor: 'gold',
+        padding: 15,
+        marginTop: 10
+    },
+    codeImport: {
+        fontSize: 12,
+        color: '#2C2C2C',
+        fontWeight: 'bold',
+        marginBottom: 15
+    },
+    code: {
+        fontSize: 12,
+        color: '#2C2C2C'
     }
 })

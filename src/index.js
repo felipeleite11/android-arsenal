@@ -1,10 +1,13 @@
 import React from 'react'
-import { Navigator } from 'react-native'
+import { Navigator, StatusBar } from 'react-native'
 
 import Routes from './routes'
 
 export default function App() {
     return (
-        <Routes />
+        <>
+            <StatusBar backgroundColor="#2C2C2C" barStyle="light-content" />
+            <Routes />
+        </>
     )
 }

@@ -12,7 +12,7 @@ export default function ToastScreen() {
             code: `ToastAndroid.show('TEXTO...', ToastAndroid.SHORT)`,
             run: () => ToastAndroid.show('TEXTO...', ToastAndroid.SHORT)
         },
-        top: { 
+        top: {
             dependencies: `import { ToastAndroid } from 'react-native'`,
             code:   `ToastAndroid.showWithGravity(
     'TEXTO...',
@@ -27,7 +27,7 @@ export default function ToastScreen() {
                 )
             }
         },
-        center: { 
+        center: {
             dependencies: `import { ToastAndroid } from 'react-native'`,
             code:   `ToastAndroid.showWithGravity(
     'TEXTO...',
@@ -42,7 +42,7 @@ export default function ToastScreen() {
                 )
             }
         },
-        bottom: { 
+        bottom: {
             dependencies: `import { ToastAndroid } from 'react-native'`,
             code:   `ToastAndroid.showWithGravity(
     'TEXTO...',
@@ -67,10 +67,10 @@ export default function ToastScreen() {
     }
 
     return (
-        <View>
-            <View style={styles.buttonsContainer}>
-                <Text style={styles.title}>TOAST</Text>
+        <View style={styles.container}>
+            <Text style={styles.title}>TOAST</Text>
 
+            <View style={styles.buttonsContainer}>
                 <TouchableOpacity onPress={() => handlePress('basic')} style={styles.button}>
                     <Text style={styles.text}>BÁSICO</Text>
                 </TouchableOpacity>
@@ -97,6 +97,11 @@ export default function ToastScreen() {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        paddingVertical: 20,
+        paddingHorizontal: 10
+    },
     title: {
       fontSize: 20,
       fontWeight: 'bold',
