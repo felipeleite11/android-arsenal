@@ -13,28 +13,86 @@ export default function SnackbarScreen() {
     const [dependencies, setDependencies] = useState('')
     const [installation, setInstallation] = useState('')
     const examples = {
-        installation: `yarn add react-native-snackbar
+        basic: {
+            installation: `yarn add react-native-snackbar
 react-native link react-native-snackbar
 
 Verificar as alterações listadas em:
 https://github.com/cooperka/react-native-snackbar/wiki/Manual-Installation`,
-        dependencies: `import Snackbar from 'react-native-snackbar'`,
-        code: `Snackbar.show({
+            dependencies: `import Snackbar from 'react-native-snackbar'`,
+            code: `Snackbar.show({
     title: 'Hello world',
     duration: Snackbar.LENGTH_SHORT
 })`,
-        run: () =>  Snackbar.show({
-                        title: 'TEXTO...',
-                        duration: Snackbar.LENGTH_SHORT,
-                    })
+            run: () =>  Snackbar.show({
+                            title: 'TEXTO...',
+                            duration: Snackbar.LENGTH_SHORT
+                        })
+        },
+        withAction: {
+            installation: `yarn add react-native-snackbar
+react-native link react-native-snackbar
+
+Verificar as alterações listadas em:
+https://github.com/cooperka/react-native-snackbar/wiki/Manual-Installation`,
+            dependencies: `import Snackbar from 'react-native-snackbar'`,
+            code: `Snackbar.show({
+    title: 'TEXTO...',
+    duration: Snackbar.LENGTH_SHORT,
+    action: {
+        title: 'DESFAZER',
+        color: 'orange',
+        onPress: () => Alert.alert('Ação disparada!'),
+    }
+})`,
+            run: () =>  Snackbar.show({
+                            title: 'TEXTO...',
+                            duration: Snackbar.LENGTH_SHORT,
+                            action: {
+                                title: 'DESFAZER',
+                                color: 'orange',
+                                onPress: () => Alert.alert('Ação disparada!'),
+                              }
+                        })
+        },
+        customized: {
+            installation: `yarn add react-native-snackbar
+react-native link react-native-snackbar
+
+Verificar as alterações listadas em:
+https://github.com/cooperka/react-native-snackbar/wiki/Manual-Installation`,
+            dependencies: `import Snackbar from 'react-native-snackbar'`,
+            code: `Snackbar.show({
+    title: 'TEXTO...',
+    duration: Snackbar.LENGTH_SHORT,
+    color: '#2c2c2c',
+    backgroundColor: 'gold',
+    action: {
+        title: 'DESFAZER',
+        color: 'blue',
+        onPress: () => Alert.alert('Ação disparada!'),
+    }
+})`,
+            run: () =>  Snackbar.show({
+                            title: 'TEXTO...',
+                            duration: Snackbar.LENGTH_SHORT,
+                            color: '#2c2c2c',
+                            backgroundColor: 'gold',
+                            action: {
+                                title: 'DESFAZER',
+                                color: 'blue',
+                                onPress: () => Alert.alert('Ação disparada!'),
+                              }
+                        })
+        }
     }
 
-    function handlePress() {
-        setInstallation(examples.installation)
-        setDependencies(examples.dependencies)
-        setCode(examples.code)
+    function handlePress(mode) {
+        setInstallation(examples[mode].installation)
+        setDependencies(examples[mode].dependencies)
+        setCode(examples[mode].code)
 
-        examples.run()
+        examples[mode].run()
     }
 
     return (
@@ -46,6 +104,13 @@ https://github.com/cooperka/react-native-snackbar/wiki/Manual-Installation`,
                     <Text style={styles.text}>BÁSICO</Text>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={() => handlePress('withAction')} style={styles.button}>
+                    <Text style={styles.text}>COM AÇÃO</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => handlePress('customized')} style={styles.button}>
+                    <Text style={styles.text}>CUSTOMIZADO</Text>
+                </TouchableOpacity>
             </View>
 
             <View style={{...styles.codeContainer, display: code ? 'flex' : 'none'}}>

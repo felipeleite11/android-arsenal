@@ -7,6 +7,10 @@ import NotificationScreen from './pages/Notification'
 import SnackbarScreen from './pages/Snackbar'
 import ToastScreen from './pages/Toast'
 import VibrationScreen from './pages/Vibration'
+import AlertScreen from './pages/Alert'
+import AsyncStorageScreen from './pages/AsyncStorage'
+import AnimationScreen from './pages/Animation'
+// import TTSScreen from './pages/TTS'
 
 const Routes = createAppContainer(
     createStackNavigator({
@@ -15,7 +19,11 @@ const Routes = createAppContainer(
         Notification: { screen: NotificationScreen },
         Snackbar: { screen: SnackbarScreen },
         Toast: { screen: ToastScreen },
-        Vibration: { screen: VibrationScreen }
+        Vibration: { screen: VibrationScreen },
+        Alert: { screen: AlertScreen },
+        AsyncStorage: { screen: AsyncStorageScreen },
+        Animation: { screen: AnimationScreen },
+        // TTS: { screen: TTSScreen }
     },
     {
         initialRouteName: 'List',
@@ -32,7 +40,7 @@ const Routes = createAppContainer(
             headerTitleStyle: {
                 fontWeight: 'bold'
             },
-            headerTintColor: '#2C2C2C',     //Back arrow color
+            headerTintColor: '#2C2C2C', //Back arrow color
             headerTitle: 'ARSENAL'
         }
     })

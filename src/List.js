@@ -8,7 +8,11 @@ export default function ListScreen({ navigation }) {
         { name: 'Snackbar' },
         { name: 'DatetimePicker' },
         { name: 'Notification' },
-        { name: 'Vibration' }
+        { name: 'Vibration' },
+        { name: 'Alert' },
+        { name: 'AsyncStorage' },
+        { name: 'Animation' },
+        // { name: 'TTS' }
     ]
 
     return (

@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.6.2",
     "@react-native-community/datetimepicker": "^2.1.0",
     "react": "16.9.0",
     "react-native": "0.61.3",
@@ -19,8 +20,11 @@
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "1.0.0-alpha.23",
     "react-native-snackbar": "^2.0.3",
+    "react-native-speech": "^0.1.2",
     "react-navigation": "^4.0.10",
-    "react-navigation-stack": "^1.10.3"
+    "react-navigation-stack": "^1.10.3",
+    "talkify-react-js": "^0.1.2",
+    "talkify-tts": "^2.7.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

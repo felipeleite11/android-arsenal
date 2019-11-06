@@ -15,6 +15,9 @@ Android Arsenal
 - [ ] Async Storage
 - [ ] Animation
 - [ ] Alert
+- [ ] Sintetização de voz
+- [ ] Microfone
+- [ ] Chat
 - [x] Toast
 - [x] Notification
 - [x] Datetime Picker
